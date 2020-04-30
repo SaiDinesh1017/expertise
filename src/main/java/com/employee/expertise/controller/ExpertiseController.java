@@ -15,9 +15,9 @@ public class ExpertiseController {
     @Autowired
     private ExpertConsolidationService consolidationService;
 
-    @GetMapping("/get_all_experts/{pageId}")
-    public ExpertsPerDomain getExpertise(@PathVariable() String pageId) {
-        return consolidationService.getAllExpertsPerPage(pageId);git add
+    @GetMapping("/get_all_experts")
+    public ExpertsPerDomain getExpertise() {
+        return consolidationService.getAllExperts();
     }
 
 
