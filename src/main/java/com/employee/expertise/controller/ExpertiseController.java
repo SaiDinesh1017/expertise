@@ -1,5 +1,6 @@
 package com.employee.expertise.controller;
 
+import com.employee.expertise.dao.Candidate;
 import com.employee.expertise.domain.ExpertsPerDomain;
 import com.employee.expertise.service.ExpertConsolidationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,12 +31,12 @@ public class ExpertiseController {
     }
 
     /**
-     * @param nameAndExpertise
+     * @param candidate
      * We receive name of the candidate and his expertise
      */
     @PostMapping("/experts/add")
-    public String addExperts(@RequestBody Map<String, List<String>> nameAndExpertise) {
-        consolidationService.addExpert(nameAndExpertise);
+    public String addExperts(@RequestBody Candidate candidate) {
+        consolidationService.addExpert(candidate);
         return "Successfully added candidate and his expertise ";
     }
 

@@ -1,5 +1,6 @@
 package com.employee.expertise.service;
 
+import com.employee.expertise.dao.Candidate;
 import com.employee.expertise.dao.Experts;
 import com.employee.expertise.domain.ExpertsPerDomain;
 import com.employee.expertise.repository.ExpertsRepository;
@@ -36,13 +37,11 @@ public class ExpertConsolidationService {
         return expertsPerDomain;
     }
 
-    public void addExpert(Map<String, List<String>> nameAndExpertise) {
-        String expertName = nameAndExpertise.keySet().stream().findFirst().get();
-        List<String> expertise = nameAndExpertise.get(expertName);
-        expertise.parallelStream().forEach(strings -> {
+    public void addExpert(Candidate candidate) {
+        candidate.getExpert().parallelStream().forEach(strings -> {
             Experts experts = new Experts();
             experts.setDomainName(strings);
-            experts.setEmployeeName(expertName);
+            experts.setEmployeeName(candidate.getName());
             expertsRepository.save(experts);
         });
     }
